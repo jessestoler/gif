@@ -1,0 +1,31 @@
+body {background-color: palegreen;
+        padding-left: 40px;
+        padding-right: 40px;}
+
+button {display: block;
+    margin-top: 10px;}
+    
+    
+#cinema {float: right;}
+
+#cta    {bottom: 60px;
+        float: right;
+        position: relative;
+        right: 235px;
+        visibility: hidden;}
+   
+
+h2 {text-align: center;}
+    
+img {height: 300px;
+        width: 300px;}
+    
+    
+input { width: 75px;}
+   
+   
+p {text-align: center;}
+  
+  
+#search {float: right;
+            margin: 0px;}

@@ -10,7 +10,7 @@ $(".film").on("click", sci);
 function fi() {
 
 if ($("#movie").val() == "") {
-        alert("no");
+        alert("Please enter the name of your favorite sci-fi movie.");
     }
 
     else {
@@ -31,6 +31,7 @@ if ($("#movie").val() == "") {
 
 function sci() {
     $("#cinema").empty();
+    $("#cta").css("visibility", "visible");
    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     $(this).attr("data-movie") + "&api_key=wx9p7JJJbTuqM9W2mB3pMgK9Jo0cJiGN&limit=10";
     $.ajax({
@@ -41,29 +42,50 @@ function sci() {
         var results = response.data;
 
         for (var i = 0; i < results.length; i++) {
-            console.log(results);
 
-          var gifDiv = $("<div class='frames'>");
+          var shot = $("<div class='frames'>");
           
           var rating = results[i].rating;
           var p = $("<p>").text("Rating: " + rating);
           var movieImage = $("<img class='still'>");
+          var movieImageTwo = $("<img class='moving'>");
           var stanley = results[i].images.fixed_height_still.url;
           var kubrick = results[i].images.fixed_height.url;
          
           movieImage.attr("src", stanley);
-          gifDiv.prepend(p);
-          gifDiv.prepend(movieImage);
+          movieImageTwo.attr("src", kubrick);
+          shot.prepend(p);
+          shot.prepend(movieImage);
+          
+            shot.prepend(movieImageTwo);   
         
-          $("#cinema").prepend(gifDiv);
+          $("#cinema").prepend(shot);
+
+          $(".still").css("position", "relative");
+          $(".moving").css("position", "relative");
+          $(".moving").css("left", "300px");
+          $(".moving").css("z-index", "2000");
+          $(".still").css("z-index", "2001");
+         
          
           
           $(".still").on("click", function() {
-              var blade = $(this).attr("src");
-              $(this).attr("src", kubrick);
-              console.log(blade);
-          });
 
+            var blade = $(this).css("z-index") - 2;
+
+          
+              
+            $(this).css("z-index", blade);
+              
+          });
+          $(".moving").on("click", function() {
+              
+            var runner = $(this).css("z-index") - 2;
+
+            $(this).css("z-index", runner);
+            
+
+        });
          
           
          }
